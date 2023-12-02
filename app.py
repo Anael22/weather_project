@@ -34,7 +34,10 @@ if st.button("Get Weather"):
             st.write(f" Sunset Time: {dt.datetime.utcfromtimestamp(response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
             st.write(f" Sunrise Time:   {dt.datetime.utcfromtimestamp(response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
     else:
-        st.warning("Please enter a city name.")
+        with open('settings.json', 'r') as file:
+            json_string = file.read()
+
+        print(json_string)
 
 
 def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
@@ -71,4 +74,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-#set_Default_cities(cities_list,json_file,str(unit))
+set_Default_cities(cities_list,"settings.json",str(unit))
