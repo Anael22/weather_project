@@ -53,22 +53,21 @@ def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
         json.dump(data_representation, f)
 
 
-if st.button("Get Weather"):
-    def main():
-        st.subheader(f"Please write a default cities list ")
 
-        # Create two columns to display inputs side by side
-        col1, col2 = st.columns(2)
-        with col1:
-            cities_list = st.text_input("Enter cities (comma-separated):")
-        with col2:
-            unit = st.text_input("Enter preferred temperature unit (C or F):")
+def main():
+    st.subheader(f"Please write a default cities list ")
 
-        # Display the user inputs
-        st.write(f"Cities List: {cities_list}")
-        st.write(f"Preferred Temperature Unit: {unit}")
-else:
-    st.warning("Please enter Cities list and Temp unit")
+    # Create two columns to display inputs side by side
+    col1, col2 = st.columns(2)
+    with col1:
+        cities_list = st.text_input("Enter cities (comma-separated):")
+    with col2:
+        unit = st.text_input("Enter preferred temperature unit (C or F):")
+
+    # Display the user inputs
+    st.write(f"Cities List: {cities_list}")
+    st.write(f"Preferred Temperature Unit: {unit}")
+
 if __name__ == "__main__":
     main()
 
