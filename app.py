@@ -67,8 +67,8 @@ if st.button("Get Weather"):
         # Display the user inputs
         st.write(f"Cities List: {cities_list}")
         st.write(f"Preferred Temperature Unit: {unit}")
-    else:
-        st.warning("Please enter Cities list and Temp unit")
+else:
+    st.warning("Please enter Cities list and Temp unit")
 if __name__ == "__main__":
     main()
 
