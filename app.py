@@ -62,7 +62,9 @@ def main():
     with col1:
         cities_list = st.text_input("Enter cities (comma-separated):")
     with col2:
-        unit = st.text_input("Enter preferred temperature unit (C or F):")
+        unit = genre = st.radio(
+    "Preferred Temperature Unit",
+    ["C", F"])
 
     # Display the user inputs
     st.write(f"Cities List: {cities_list}")
@@ -71,3 +73,4 @@ def main():
 if __name__ == "__main__":
     main()
 
+#set_Default_cities(cities_list,json_file,str(unit))
