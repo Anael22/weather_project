@@ -56,7 +56,7 @@ cities_list_heather= st.subheader(f"Please write a default cities list and prefe
 
 cities_list, unit = st.columns(2)
 cities_list = st.text_input(f"Example input- ["London","New York"]")
-unit= st.text_input(f"Example input- ["London","New York], C")
+unit= st.text_input(f"Example input- ["London","New York"], C")
 st.write(f"Input 1: {cities_list}")
 st.write(f"Input 2: {unit}")
 
