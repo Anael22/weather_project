@@ -50,7 +50,6 @@ def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
     weather=(f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n Humidity:       {def_response['main']['humidity']:}%\n Temperature:    {temp_unit[0]}\n Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
     city_weather={default_city:weather}
     file_content.append(city_weather)
-
   data_representation = json.dumps(file_content)
   with open(json_file,'w') as f:
         json.dump(data_representation, f)
