@@ -26,7 +26,7 @@ if st.button("Get Weather"):
             st.error("City not found. Please enter a valid city name.")
         else:
             # Display weather information
-            st.subheader(f"Weather information for {city_name}:")
+            st.subheader(f"Weather information for {city}:")
             st.write(f"Temperature:    {(response['main']['temp'])-273.15:.2f}C/{((response['main']['temp'])-273.15)*1.8 + 32:.2f}F ")
             st.write(f"Humidity: {response['main']['humidity']}%")
             st.write(f"Wind Speed: {response['wind']['speed']} m/s")
