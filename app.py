@@ -52,13 +52,23 @@ def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
   with open(json_file,'w') as f:
         json.dump(data_representation, f)
 
-cities_list_heather= st.subheader(f"Please write a default cities list and preferred temp unit [C \ F] ")
-
-cities_list, unit = st.columns(2)
-cities_list = st.text_input(f"Example input- ['London','New York']")
-unit= st.text_input(f"preferred temp unit [C \ F]")
-st.write(f"Input 1: {cities_list}")
-st.write(f"Input 2: {unit}")
 
 
+def main():
+    st.subheader(f"Please write a default cities list ")
+
+    # Create two columns to display inputs side by side
+    col1, col2 = st.columns(2)
+    with col1:
+        cities_list = st.text_input("Enter cities (comma-separated):")
+    with col2:
+        unit = st.text_input("Enter preferred temperature unit (C or F):")
+
+    # Display the user inputs
+    st.write(f"Cities List: {cities_list}")
+    st.write(f"Preferred Temperature Unit: {unit}")
+
+if __name__ == "__main__":
+    main()
+    
 set_Default_cities(cities_list,settings_user_json,unit)
