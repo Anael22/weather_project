@@ -62,9 +62,7 @@ def main():
     with col1:
         cities_list = st.text_input("Enter cities (comma-separated):")
     with col2:
-        unit = genre = st.radio(
-    "Preferred Temperature Unit",
-    ["C", F"])
+        unit = genre = st.radio("Preferred Temperature Unit",["C", "F"])
 
     # Display the user inputs
     st.write(f"Cities List: {cities_list}")
