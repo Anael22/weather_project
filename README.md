@@ -56,19 +56,19 @@ To fetch weather data, you need to create an API key from a weather data provide
 
 To use Weather Forest, follow these steps:
 
-1. Run the main script:
+1. Enter the location for which you want to fetch the weather data when prompted.
+
+2. Run the main script:
 
     ```bash
     python main.py
-    ```
-
-2. Enter the location for which you want to fetch the weather data when prompted.
+    ``` 
 
 3. View the weather information displayed on the console.
 
 4. use the functions:
 
-### convert_dateTime(local_dateTime, destination_Latitude, destination_Longitude)
+- **convert_dateTime(local_dateTime, destination_Latitude, destination_Longitude)**
 
 This function takes the local date and time of the user, as well as the latitude and longitude of the specified weather location, and converts the date and time considering time zone differences.
 set_Default_cities(cities_list, json_file, Celsius_Fahrenheit)
@@ -78,7 +78,7 @@ Example usage:
 convert_dateTime((dt.datetime.now()),(response['coord']['lat']),(response['coord']['lon'])
 
 
-### set_Default_cities(cities_list, json_file, Celsius_Fahrenheit)
+- **set_Default_cities(cities_list, json_file, Celsius_Fahrenheit)**
 This function allows the user to set default cities and preferences. It takes a list of cities, the path to the settings JSON file, and a preference flag (Celsius or Fahrenheit).
 After you set the default setting you can copy the "small code" and paste under the city input line "city=input("your city")"
 and when no input is provided from the user , the weather for the default locations should be displayed.
@@ -87,7 +87,7 @@ Example usage:
 set_Default_cities(['New York', 'london'], 'settings.json', 'Celsius')
 
 
-### read_settings_file(json_file)
+- **read_settings_file(json_file)**
 This function reads and retrieves the settings from the specified JSON file.
 
 Example usage:
@@ -118,9 +118,12 @@ The project relies on the following Python libraries, :
 - **json**: This standard library is used to work with JSON data. In the project, it is used for reading and writing settings in JSON format.
 
 
-you can be install the following libraries using the `pip install -r requirements.txt` command:
+you can  install the following libraries using the `pip install -r requirements.txt` command:
+
 requests==2.26.0
+
 timezonefinder==5.0.0
+
 pytz==2023.5
 
 The json and datetime libraries are not necessary because they are part of the Python standard library, and you don't need to install them separately.
