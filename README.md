@@ -120,10 +120,8 @@ The project relies on the following Python libraries, :
 
 you can  install the following libraries using the `pip install -r requirements.txt` command:
 
-requests==2.26.0
-
-timezonefinder==5.0.0
-
-pytz==2023.5
+- requests==2.31.0
+- timezonefinder==6.2.0
+- pytz==2023.3.post1
 
 The json and datetime libraries are not necessary because they are part of the Python standard library, and you don't need to install them separately.
