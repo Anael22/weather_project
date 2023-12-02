@@ -5,6 +5,7 @@ import pytz
 import json
 import streamlit as st
 
+
 st.title('Weather App')
 
 name = st.text_input('Enter your name', '')
@@ -34,3 +35,30 @@ if st.button("Get Weather"):
             st.write(f" Sunrise Time:   {dt.datetime.utcfromtimestamp(response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
     else:
         st.warning("Please enter a city name.")
+
+
+def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
+  # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
+  # the function is silence, creates the json file
+  file_content=[]
+  for default_city in cities_list:
+    def_response= requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
+    temp_unit=[f"{(def_response['main']['temp'])-273.15:.2f}C" if Celsius_Fahrenheit=="Celsius" else f"{((def_response['main']['temp'])-273.15)*1.8 + 32:.2f}F"]
+    weather=(f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n Humidity:       {def_response['main']['humidity']:}%\n Temperature:    {temp_unit[0]}\n Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
+    city_weather={default_city:weather}
+    file_content.append(city_weather)
+
+  data_representation = json.dumps(file_content)
+  with open(json_file,'w') as f:
+        json.dump(data_representation, f)
+
+cities_list_heather= st.subheader(f"Please write a default cities list and preferred temp unit [C \ F] ")
+
+cities_list, unit = st.columns(2)
+cities_list = st.text_input(f"Example input- ["London","New York"]")
+unit= st.text_input(f"Example input- ["London","New York], C")
+st.write(f"Input 1: {cities_list}")
+st.write(f"Input 2: {unit}")
+
+
+set_Default_cities(cities_list,settings_user_json,unit)
