@@ -67,8 +67,7 @@ def main():
     # Display the user inputs
     st.write(f"Cities List: {cities_list}")
     st.write(f"Preferred Temperature Unit: {unit}")
-
+    set_Default_cities(cities_list,settings_user_json,unit)
 if __name__ == "__main__":
     main()
-    
-set_Default_cities(cities_list,settings_user_json,unit)
+
