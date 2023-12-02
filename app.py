@@ -61,7 +61,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-if cities_list:
+if cities_list == []:
     def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
       # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
       # the function is silence, creates the json file
