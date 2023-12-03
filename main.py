@@ -4,6 +4,8 @@ from timezonefinder import TimezoneFinder
 import pytz
 import json
 
+
+
 city= "Paris"#(input("your city"))
 api_key="71964e4666d40691f8c7eafa0c0c1cd1" # your api key
 basic_url="https://api.openweathermap.org/data/2.5/weather?"
@@ -18,20 +20,7 @@ print(summarized_response)
 
 
 
-
 api_key="71964e4666d40691f8c7eafa0c0c1cd1" # your api key
-def get_weather_data(city_name):
-    base_url = f'http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}'
-    response = requests.get(base_url).json()
-    data = response
-    summarized_response = (f"""Weather description for {city_name}: {response['weather'][0]['description']}    
-        Humidity:       {response['main']['humidity']:}%    
-        Temperature:    {(response['main']['temp']) - 273.15:.2f}C/{((response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F    
-        Sunset Time:    {dt.datetime.utcfromtimestamp(response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}    
-        Sunrise Time:   {dt.datetime.utcfromtimestamp(response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}""")
-    return summarized_response
-
-print(get_weather_data("london"))
 
 
 def convert_dateTime(local_dateTime,destination_Latitude,destination_Longitude):

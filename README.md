@@ -2,6 +2,7 @@
 
 Weather Forest is a Python project that allows you to fetch and display weather data for any specified location.
 
+The project contains a Streamlit weather app allows users to enter a city and view its weather details. It uses the OpenWeatherMap API to fetch real-time weather information.
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Project Setup](#project-setup)
@@ -93,6 +94,17 @@ This function reads and retrieves the settings from the specified JSON file.
 Example usage:
 settings = read_settings_file('settings.json')
 
+To Use streamlit app run
+
+   
+ ```bash
+   streamlit run app.py
+   ``` 
+or access thr url-
+
+ ```bash
+https://weatherdataforyou.streamlit.app/
+   ``` 
 
 ## Default Settings and Favorites
 
@@ -123,5 +135,6 @@ you can  install the following libraries using the `pip install -r requirements.
 - requests==2.31.0
 - timezonefinder==6.2.0
 - pytz==2023.3.post1
+- streamlit==1.29.0
 
 The json and datetime libraries are not necessary because they are part of the Python standard library, and you don't need to install them separately.
