@@ -76,6 +76,8 @@ def main():
 
     # Button to save settings
     if st.button("Save"):
+        api_key = "71964e4666d40691f8c7eafa0c0c1cd1"  # your api key
+        basic_url = "https://api.openweathermap.org/data/2.5/weather?"
         set_Default_cities(cities_list, "settings1.json", str(unit))
         with open('settings1.json', 'r') as file:
             json_string = file.read()
