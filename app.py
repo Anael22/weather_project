@@ -5,24 +5,11 @@ import pytz
 import json
 import streamlit as st
 
-
-st.title('Weather App')
 title_text = "Weather App"
-title_color = "blue"
+title_style = "color: darkblue; font-weight: bold; text-align: center;"
 
-title_html = f"""
-    <style>
-        .title-text {{
-            color: {title_color};
-            font-size: 36px;
-            text-align: left;
-            margin-bottom: 20px;
-        }}
-    </style>
-    <div class="title-text">{title_text}</div>
-"""
-st.markdown(title_html, unsafe_allow_html=True)
-
+# Display the styled title using st.markdown
+st.markdown(f"<h1 style='{title_style}'>{title_text}</h1>", unsafe_allow_html=True)
 
 name = st.text_input('Enter your name', '')
 if name:
