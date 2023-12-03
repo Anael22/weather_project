@@ -39,7 +39,7 @@ if st.button("Get Weather"):
 
         print(json_string)
 
-if st.button("submit"):
+if st.button("Set default cities"):
     def main():
         st.subheader(f"Please write a default cities list ")
 
@@ -55,22 +55,23 @@ if st.button("submit"):
         st.write(f"Preferred Temperature Unit: {unit}")
 
     if __name__ == "__main__":
-        main()
-    def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
-      # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
-      # the function is silence, creates the json file
-      file_content=[]
-      for default_city in cities_list:
-        def_response= requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
-        temp_unit=[f"{(def_response['main']['temp'])-273.15:.2f}C" if Celsius_Fahrenheit=="Celsius" else f"{((def_response['main']['temp'])-273.15)*1.8 + 32:.2f}F"]
-        weather=(f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n Humidity:       {def_response['main']['humidity']:}%\n Temperature:    {temp_unit[0]}\n Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
-        city_weather={default_city:weather}
-        file_content.append(city_weather)
-      data_representation = json.dumps(file_content)
-      with open(json_file,'w') as f:
-            json.dump(data_representation, f)
+            main()
+    if st.button("submit"):
+        def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
+          # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
+          # the function is silence, creates the json file
+          file_content=[]
+          for default_city in cities_list:
+            def_response= requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
+            temp_unit=[f"{(def_response['main']['temp'])-273.15:.2f}C" if Celsius_Fahrenheit=="Celsius" else f"{((def_response['main']['temp'])-273.15)*1.8 + 32:.2f}F"]
+            weather=(f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n Humidity:       {def_response['main']['humidity']:}%\n Temperature:    {temp_unit[0]}\n Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
+            city_weather={default_city:weather}
+            file_content.append(city_weather)
+          data_representation = json.dumps(file_content)
+          with open(json_file,'w') as f:
+                json.dump(data_representation, f)
 
-    set_Default_cities(cities_list,"settings.json",str(unit))
+        set_Default_cities(cities_list,"settings.json",str(unit))
 else:
     pass
 
