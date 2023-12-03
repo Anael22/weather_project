@@ -79,10 +79,11 @@ def main():
         file_content = []
         for default_city in cities_list:
             def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
-            temp_unit = [
-                f"{(def_response['main']['temp']) - 273.15:.2f}C" if f"{unit}" == "C" else
-                f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
-            ]
+            temp_unit = "C"
+                #[
+                #f"{(def_response['main']['temp']) - 273.15:.2f}C" if f"{unit}" == "C" else
+                #f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
+            #]
             weather = (
                 f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n "
                 f"Humidity:       {def_response['main']['humidity']}%\n "
