@@ -7,9 +7,8 @@ import streamlit as st
 
 title_text = "Weather App"
 title_style = "color: darkblue; font-weight: bold; text-align: center;"
-
-# Display the styled title using st.markdown
-st.markdown(f"<h1 style='{title_style}'>{title_text}</h1>", unsafe_allow_html=True)
+line_style = "border-bottom: 2px solid darkblue; margin-bottom: 20px;"
+st.markdown(f"<h1 style='{title_style}{line_style}'>{title_text}</h1>", unsafe_allow_html=True)
 
 name = st.text_input('Enter your name', '')
 if name:
