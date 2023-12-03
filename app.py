@@ -57,14 +57,10 @@ def set_Default_cities(cities_list, json_file, Celsius_Fahrenheit):
         file_content.append(city_weather)
 
     data_representation = json.dumps(file_content)
-    st.write(file_content)
     with open(json_file, 'w') as f:
         json.dump(data_representation, f)
 
 def main():
-    st.title("Weather App Settings")
-
-    # Button to set default cities
     if st.button("Set default cities"):
         st.subheader("Please write a default cities list ")
 
@@ -73,7 +69,7 @@ def main():
         with col1:
             cities_list = st.text_input("Enter cities (comma-separated):")
         with col2:
-            unit = genre = st.radio("Preferred Temperature Unit", ["Celsius", "Fahrenheit"])
+            unit = genre = st.radio("Preferred Temperature Unit", ["C", "F"])
 
         # Display the user inputs
         st.write(f"Cities List: {cities_list}")
@@ -82,6 +78,11 @@ def main():
     # Button to save settings
     if st.button("Save"):
         set_Default_cities(cities_list, "settings1.json", unit)
+        with open('settings.json', 'r') as file:
+            json_string = file.read()
+
+        st.write(json_string)
+
 
 if __name__ == "__main__":
     main()
