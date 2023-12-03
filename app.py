@@ -80,7 +80,7 @@ def main():
         for default_city in cities_list:
             def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
             temp_unit = [
-                f"{(def_response['main']['temp']) - 273.15:.2f}C" if {unit} == "C" else
+                f"{(def_response['main']['temp']) - 273.15:.2f}C" if f"{unit}" == "C" else
                 f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
             ]
             weather = (
