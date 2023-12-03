@@ -39,29 +39,23 @@ if st.button("Get Weather"):
 
         print(json_string)
 
+if st.button("submit"):
+    def main():
+        st.subheader(f"Please write a default cities list ")
 
+        # Create two columns to display inputs side by side
+        col1, col2 = st.columns(2)
+        with col1:
+            cities_list = st.text_input("Enter cities (comma-separated):")
+        with col2:
+            unit = genre = st.radio("Preferred Temperature Unit",["C", "F"])
 
+        # Display the user inputs
+        st.write(f"Cities List: {cities_list}")
+        st.write(f"Preferred Temperature Unit: {unit}")
 
-
-
-def main():
-    st.subheader(f"Please write a default cities list ")
-
-    # Create two columns to display inputs side by side
-    col1, col2 = st.columns(2)
-    with col1:
-        cities_list = st.text_input("Enter cities (comma-separated):")
-    with col2:
-        unit = genre = st.radio("Preferred Temperature Unit",["C", "F"])
-
-    # Display the user inputs
-    st.write(f"Cities List: {cities_list}")
-    st.write(f"Preferred Temperature Unit: {unit}")
-
-if __name__ == "__main__":
-    main()
-
-if st.button("Get Weather"):
+    if __name__ == "__main__":
+        main()
     def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
       # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
       # the function is silence, creates the json file
