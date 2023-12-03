@@ -76,7 +76,7 @@ def main():
 
     # Button to save settings
     if st.button("Save"):
-        set_Default_cities(cities_list, "settings1.json", unit)
+        set_Default_cities(cities_list, "settings1.json", str(unit))
         with open('settings1.json', 'r') as file:
             json_string = file.read()
 
