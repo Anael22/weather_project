@@ -58,8 +58,6 @@ if st.button("Set default cities"):
             main()
     if st.button("submit"):
         def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
-          # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
-          # the function is silence, creates the json file
           file_content=[]
           for default_city in cities_list:
             def_response= requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
@@ -68,6 +66,7 @@ if st.button("Set default cities"):
             city_weather={default_city:weather}
             file_content.append(city_weather)
           data_representation = json.dumps(file_content)
+          st.write(file_content)
           with open(json_file,'w') as f:
                 json.dump(data_representation, f)
 
@@ -76,3 +75,7 @@ else:
     pass
 
 
+with open('settings1.json', 'r') as file:
+    json_string = file.read()
+
+print(json_string)
