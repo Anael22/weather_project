@@ -61,7 +61,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-if cities_list == []:
+if st.button("Get Weather"):
     def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
       # Store and manage default settings and multiple favorite locations using file I/O in JSON format.
       # the function is silence, creates the json file
@@ -79,3 +79,9 @@ if cities_list == []:
     set_Default_cities(cities_list,"settings.json",str(unit))
 else:
     pass
+
+
+with open('settings.json', 'r') as file:
+    json_string = file.read()
+
+print(json_string)
