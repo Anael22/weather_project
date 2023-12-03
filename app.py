@@ -38,27 +38,7 @@ if st.button("Get Weather"):
             json_string = file.read()
 
         print(json_string)
-def set_Default_cities(cities_list, json_file, Celsius_Fahrenheit):
-    file_content = []
-    for default_city in cities_list:
-        def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
-        temp_unit = [
-            f"{(def_response['main']['temp']) - 273.15:.2f}C" if Celsius_Fahrenheit == "C" else
-            f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
-        ]
-        weather = (
-            f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n "
-            f"Humidity:       {def_response['main']['humidity']}%\n "
-            f"Temperature:    {temp_unit[0]}\n "
-            f"Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n "
-            f"Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}"
-        )
-        city_weather = {default_city: weather}
-        file_content.append(city_weather)
 
-    data_representation = json.dumps(file_content)
-    with open(json_file, 'w') as f:
-        json.dump(data_representation, f)
 
 def main():
     st.subheader("Please write a default cities list ")
@@ -76,14 +56,15 @@ def main():
 
     # Button to save settings
     if st.button("Save"):
+        api_key = "71964e4666d40691f8c7eafa0c0c1cd1"  # your api key
+        basic_url = "https://api.openweathermap.org/data/2.5/weather?"
         file_content = []
         for default_city in cities_list:
             def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
-            temp_unit = "C"
-                #[
-                #f"{(def_response['main']['temp']) - 273.15:.2f}C" if f"{unit}" == "C" else
-                #f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
-            #]
+            temp_unit = [
+                f"{(def_response['main']['temp']) - 273.15:.2f}C" if f"{unit}" == "C" else
+                f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
+            ]
             weather = (
                 f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n "
                 f"Humidity:       {def_response['main']['humidity']}%\n "
