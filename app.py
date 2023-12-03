@@ -71,12 +71,8 @@ if st.button("Set default cities"):
           with open(json_file,'w') as f:
                 json.dump(data_representation, f)
 
-        set_Default_cities(cities_list,"settings.json",str(unit))
+        set_Default_cities(cities_list,"settings1.json",str(unit))
 else:
     pass
 
 
-with open('settings.json', 'r') as file:
-    json_string = file.read()
-
-print(json_string)
