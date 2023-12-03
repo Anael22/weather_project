@@ -38,40 +38,50 @@ if st.button("Get Weather"):
             json_string = file.read()
 
         print(json_string)
+def set_Default_cities(cities_list, json_file, Celsius_Fahrenheit):
+    file_content = []
+    for default_city in cities_list:
+        def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
+        temp_unit = [
+            f"{(def_response['main']['temp']) - 273.15:.2f}C" if Celsius_Fahrenheit == "Celsius" else
+            f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
+        ]
+        weather = (
+            f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n "
+            f"Humidity:       {def_response['main']['humidity']}%\n "
+            f"Temperature:    {temp_unit[0]}\n "
+            f"Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n "
+            f"Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}"
+        )
+        city_weather = {default_city: weather}
+        file_content.append(city_weather)
 
-if st.button("Set default cities"):
-    def main():
-        st.subheader(f"Please write a default cities list ")
+    data_representation = json.dumps(file_content)
+    st.write(file_content)
+    with open(json_file, 'w') as f:
+        json.dump(data_representation, f)
+
+def main():
+    st.title("Weather App Settings")
+
+    # Button to set default cities
+    if st.button("Set default cities"):
+        st.subheader("Please write a default cities list ")
 
         # Create two columns to display inputs side by side
         col1, col2 = st.columns(2)
         with col1:
             cities_list = st.text_input("Enter cities (comma-separated):")
         with col2:
-            unit = genre = st.radio("Preferred Temperature Unit",["C", "F"])
+            unit = genre = st.radio("Preferred Temperature Unit", ["Celsius", "Fahrenheit"])
 
         # Display the user inputs
         st.write(f"Cities List: {cities_list}")
         st.write(f"Preferred Temperature Unit: {unit}")
 
-    if __name__ == "__main__":
-            main()
-    if st.button("submit"):
-        def set_Default_cities(cities_list,json_file,Celsius_Fahrenheit):
-          file_content=[]
-          for default_city in cities_list:
-            def_response= requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
-            temp_unit=[f"{(def_response['main']['temp'])-273.15:.2f}C" if Celsius_Fahrenheit=="Celsius" else f"{((def_response['main']['temp'])-273.15)*1.8 + 32:.2f}F"]
-            weather=(f" Weather description for {default_city}: {def_response['weather'][0]['description']}\n Humidity:       {def_response['main']['humidity']:}%\n Temperature:    {temp_unit[0]}\n Sunset Time:    {dt.datetime.utcfromtimestamp(def_response['sys']['sunset']).strftime('%Y-%m-%d %H:%M:%S UTC')}\n Sunrise Time:   {dt.datetime.utcfromtimestamp(def_response['sys']['sunrise']).strftime('%Y-%m-%d %H:%M:%S UTC')}")
-            city_weather={default_city:weather}
-            file_content.append(city_weather)
-          data_representation = json.dumps(file_content)
-          st.write(file_content)
-          with open(json_file,'w') as f:
-                json.dump(data_representation, f)
+    # Button to save settings
+    if st.button("Save"):
+        set_Default_cities(cities_list, "settings1.json", unit)
 
-        set_Default_cities(cities_list,"settings1.json",str(unit))
-else:
-    pass
-
-
+if __name__ == "__main__":
+    main()
