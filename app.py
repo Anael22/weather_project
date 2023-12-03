@@ -7,6 +7,22 @@ import streamlit as st
 
 
 st.title('Weather App')
+title_text = "Weather App"
+title_color = "blue"
+
+title_html = f"""
+    <style>
+        .title-text {{
+            color: {title_color};
+            font-size: 36px;
+            text-align: left;
+            margin-bottom: 20px;
+        }}
+    </style>
+    <div class="title-text">{title_text}</div>
+"""
+st.markdown(title_html, unsafe_allow_html=True)
+
 
 name = st.text_input('Enter your name', '')
 if name:
