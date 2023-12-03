@@ -43,7 +43,7 @@ def set_Default_cities(cities_list, json_file, Celsius_Fahrenheit):
     for default_city in cities_list:
         def_response = requests.get(f"{basic_url}appid={api_key}&q={default_city}").json()
         temp_unit = [
-            f"{(def_response['main']['temp']) - 273.15:.2f}C" if Celsius_Fahrenheit == "Celsius" else
+            f"{(def_response['main']['temp']) - 273.15:.2f}C" if Celsius_Fahrenheit == "C" else
             f"{((def_response['main']['temp']) - 273.15) * 1.8 + 32:.2f}F"
         ]
         weather = (
@@ -61,19 +61,18 @@ def set_Default_cities(cities_list, json_file, Celsius_Fahrenheit):
         json.dump(data_representation, f)
 
 def main():
-    if st.button("Set default cities"):
-        st.subheader("Please write a default cities list ")
+    st.subheader("Please write a default cities list ")
 
-        # Create two columns to display inputs side by side
-        col1, col2 = st.columns(2)
-        with col1:
-            cities_list = st.text_input("Enter cities (comma-separated):")
-        with col2:
-            unit = genre = st.radio("Preferred Temperature Unit", ["C", "F"])
+    # Create two columns to display inputs side by side
+    col1, col2 = st.columns(2)
+    with col1:
+        cities_list = st.text_input("Enter cities (comma-separated):")
+    with col2:
+        unit = genre = st.radio("Preferred Temperature Unit", ["C", "F"])
 
-        # Display the user inputs
-        st.write(f"Cities List: {cities_list}")
-        st.write(f"Preferred Temperature Unit: {unit}")
+    # Display the user inputs
+    st.write(f"Cities List: {cities_list}")
+    st.write(f"Preferred Temperature Unit: {unit}")
 
     # Button to save settings
     if st.button("Save"):
