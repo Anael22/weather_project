@@ -75,7 +75,3 @@ else:
     pass
 
 
-with open('settings1.json', 'r') as file:
-    json_string = file.read()
-
-print(json_string)
